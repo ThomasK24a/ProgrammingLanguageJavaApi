@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LanguagePopularity",
+  "type": "object",
+  "description": "The popularity of languages recorded in january of their respective year",
+  "link": "https://www.kaggle.com/jyotmakadiya/top-20-programming-languages-2021/version/1",
+  "properties": {
+    "LanguageName": {
+      "description": "Name of the programming language",
+      "maxLength": 100,
+      "type": "string"
+    },
+    "Year": {
+      "type": "integer",
+      "description": "The year of the statistic",
+      "minimum": 1900,
+      "maximum": 9999
+    },
+    "RatingPercentile": {
+      "type": "integer",
+      "description": "The popularity of the language in percentages",
+      "minimum": 0,
+      "maximum": 100
+    }
+  },
+  "required": [ "Year", "RatingPercentile", "LanguageName" ],
+  "additionalProperties": false
+}

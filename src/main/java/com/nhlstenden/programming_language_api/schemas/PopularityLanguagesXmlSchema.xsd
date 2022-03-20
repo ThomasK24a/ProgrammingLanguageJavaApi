@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PopularityLanguages"
+    targetNamespace="http://tempuri.org/PopularityLanguages.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/PopularityLanguages.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="LanguagePopularity">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LanguageName">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="100"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Year">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:minInclusive value="1900"/>
+							<xs:maxInclusive value="9999"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="RatingPercentile">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:minInclusive value="0"/>
+							<xs:maxInclusive value="100"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="RatingRank">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

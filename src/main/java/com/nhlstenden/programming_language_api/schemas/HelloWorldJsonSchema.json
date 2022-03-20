@@ -1,0 +1,25 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HelloWorldInLanguage",
+  "type": "object",
+  "description": "How to say Hello World in different programming languages",
+  "link": "https://www.kaggle.com/ihelon/hello-world-in-programming-languages",
+  "properties": {
+    "LanguageName": {
+      "type": "string",
+      "description": "Name of the programming language",
+      "maxLength": 100
+    },
+    "Extension": {
+      "type": "string",
+      "description": "Extension of the program file",
+      "maxLength": 100
+    },
+    "HelloWorldProgram": {
+      "type": "string",
+      "description": "How to say Hello World in that programming language"
+    }
+  },
+  "required": [ "LanguageName", "HelloWorldProgram" ],
+  "additionalProperties": false
+}
