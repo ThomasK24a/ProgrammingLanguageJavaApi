@@ -49,9 +49,5 @@ public class LanguageRepository {
         Language language = this.getFromId(id);
         entityManager.remove(language);
     }
-
-    public void setEntityManager(EntityManager entityManager){
-        this.entityManager = entityManager;
-    }
 }
 
