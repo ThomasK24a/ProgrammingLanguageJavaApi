@@ -4,11 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "language_github_issues")
 public class GithubIssues {
+    @Id
     private long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="language_id")
     private Language language;
     private int year;
     private int quarter;
