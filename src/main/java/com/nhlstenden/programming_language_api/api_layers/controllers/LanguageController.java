@@ -23,19 +23,19 @@ public class LanguageController {
         this.languageValidator = languageValidator;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public @ResponseBody ResponseEntity<List<LanguageDto>> getAllLanguages(){
         return new ResponseEntity<>(languageService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public @ResponseBody ResponseEntity<LanguageDto> getLanguage(@PathVariable("id") String idString) {
         int id = Integer.parseInt(idString);
         return new ResponseEntity<>(languageService.getOne(id), HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<Void> updateLanguage(@PathVariable("id") String idString, @RequestBody JSONObject jsonObject) {
+    public @ResponseBody ResponseEntity<Void> updateLanguageJson(@PathVariable("id") String idString, @RequestBody JSONObject jsonObject) {
         int id = Integer.parseInt(idString);
         languageValidator.validate(jsonObject);
         languageService.update(jsonObject, id);
@@ -43,7 +43,7 @@ public class LanguageController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<Void> postLanguage(@RequestBody JSONObject jsonObject) {
+    public @ResponseBody ResponseEntity<Void> postLanguageJson(@RequestBody JSONObject jsonObject) {
         languageValidator.validate(jsonObject);
         languageService.save(jsonObject);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -4,9 +4,11 @@ import com.nhlstenden.programming_language_api.api_layers.repositories.LanguageR
 import com.nhlstenden.programming_language_api.data.models.*;
 import com.nhlstenden.programming_language_api.data.transformers.LanguageTransformer;
 import com.nhlstenden.programming_language_api.exceptions.*;
+import liquibase.repackaged.org.apache.commons.lang3.NotImplementedException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
+import javax.xml.crypto.dsig.XMLObject;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,9 +39,17 @@ public class LanguageService {
         repository.save(language);
     }
 
-    public void update(JSONObject jsonObject, long id) throws ObjectNotFoundException {
+    public void update(JSONObject jsonObject, long id) {
         Language language = transformer.languageDtoToLanguage(transformer.jsonToLanguageDto(jsonObject));
         repository.update(language, id);
+    }
+
+    public void save(XMLObject xmlObject) {
+        throw new NotImplementedException();
+    }
+
+    public void update(XMLObject xmlObject, long id) {
+        throw new NotImplementedException();
     }
 
     public void delete(long languageId) throws ObjectNotFoundException {
