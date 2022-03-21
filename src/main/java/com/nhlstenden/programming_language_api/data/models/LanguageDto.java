@@ -11,5 +11,5 @@ public class LanguageDto {
     private long id;
     private String languageName;
     private String fileExtension;
-    private String HelloWorldProgram;   //entire program necessary to write "Hello World" in this language
+    private String helloWorldProgram;   //entire program necessary to write "Hello World" in this language
 }

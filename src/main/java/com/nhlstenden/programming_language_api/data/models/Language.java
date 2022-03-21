@@ -1,12 +1,13 @@
 package com.nhlstenden.programming_language_api.data.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Data
 @AllArgsConstructor
@@ -15,8 +16,12 @@ import javax.persistence.Table;
 @Table(name = "language")
 public class Language {
     @Id
+    @Column(name="id", nullable = false)
     private long id;
+    @Column(name="language_name", nullable = false)
     private String languageName;
+    @Column(name="file_extension")
     private String fileExtension;
-    private String HelloWorldProgram;   //entire program necessary to write "Hello World" in this language
+    @Column(name="hello_world_program", nullable = false)
+    private String helloWorldProgram;   //entire program necessary to write "Hello World" in this language
 }
