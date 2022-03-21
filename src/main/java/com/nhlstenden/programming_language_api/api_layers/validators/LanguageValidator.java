@@ -31,7 +31,7 @@ public class LanguageValidator {
     }
 
     private Schema getXmlLanguageSchema(){
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public void validate(XMLObject xmlObject){

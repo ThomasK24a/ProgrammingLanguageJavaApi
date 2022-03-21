@@ -4,7 +4,6 @@ import com.nhlstenden.programming_language_api.api_layers.repositories.LanguageR
 import com.nhlstenden.programming_language_api.data.models.*;
 import com.nhlstenden.programming_language_api.data.transformers.LanguageTransformer;
 import com.nhlstenden.programming_language_api.exceptions.*;
-import liquibase.repackaged.org.apache.commons.lang3.NotImplementedException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
@@ -45,11 +44,11 @@ public class LanguageService {
     }
 
     public void save(XMLObject xmlObject) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public void update(XMLObject xmlObject, long id) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public void delete(long languageId) throws ObjectNotFoundException {
