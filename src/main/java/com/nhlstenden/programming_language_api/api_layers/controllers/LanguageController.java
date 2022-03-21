@@ -2,6 +2,7 @@ package com.nhlstenden.programming_language_api.api_layers.controllers;
 
 import com.nhlstenden.programming_language_api.api_layers.services.LanguageService;
 
+import com.nhlstenden.programming_language_api.data.models.LanguageDto;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -9,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/languages")
+@RequestMapping(value = "languages")
 public class LanguageController {
     private final LanguageService languageService;
 
@@ -18,8 +19,8 @@ public class LanguageController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<JSONObject> getAllLanguages(){
-        return new ResponseEntity<>(languageService.getAll(), HttpStatus.OK);
+    public @ResponseBody ResponseEntity<LanguageDto> getAllLanguages(){
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
