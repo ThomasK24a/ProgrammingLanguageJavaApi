@@ -1,6 +1,7 @@
 package com.nhlstenden.programming_language_api;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -17,8 +18,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@EnableWebMvc
 @Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = "com.nhlstenden.programming_language_api")
 @EnableTransactionManagement
 public class Config implements WebMvcConfigurer {
     @Bean
@@ -50,5 +52,10 @@ public class Config implements WebMvcConfigurer {
         dataSource.setUsername("root");
         dataSource.setPassword("");
         return dataSource;
+    }
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.defaultContentType(MediaType.TEXT_PLAIN);
     }
 }
