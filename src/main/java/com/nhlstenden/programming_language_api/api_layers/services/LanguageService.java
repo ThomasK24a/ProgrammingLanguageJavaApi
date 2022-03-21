@@ -66,9 +66,10 @@ public class LanguageService {
     }
 
     private Schema getJsonLanguageSchema(){
-        try (InputStream inputStream = getClass().getResourceAsStream(
-                "/com/nhlstenden/programming_language_api/data/schemas/LanguageJsonSchema.json")) {
-            JSONObject rawSchema = new JSONObject(new JSONTokener(Objects.requireNonNull(inputStream)));
+        try (InputStream inputStream = this.getClass().getResourceAsStream(
+                "/schemas/LanguageJsonSchema.json")) {
+            JSONTokener tokener = new JSONTokener(Objects.requireNonNull(inputStream));
+            JSONObject rawSchema = new JSONObject(tokener);
             return SchemaLoader.load(rawSchema);
         } catch (Exception ex) {
             throw new InvalidSchemaException("language");
