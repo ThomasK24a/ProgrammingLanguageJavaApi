@@ -6,6 +6,7 @@ import com.nhlstenden.programming_language_api.data.transformers.LanguageTransfo
 import com.nhlstenden.programming_language_api.exceptions.*;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.loader.SchemaLoader;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.springframework.stereotype.Component;
@@ -26,13 +27,19 @@ public class LanguageService {
         this.transformer = transformer;
     }
 
-    public JSONObject getAll(){
+    public JSONArray getAll(){
         final Collection<Language> languages = repository.getAll();
         List<LanguageDto> languageDtoList = languages.stream().map(transformer::languageToLanguageDto)
                 .collect(Collectors.toList());
-        JSONObject jsonObject = transformer.languageDtoListToJson(languageDtoList);
-        validate(jsonObject);
-        return jsonObject;
+
+        JSONArray languageList = new JSONArray();
+        for (LanguageDto languageDto : languageDtoList){
+            JSONObject jsonLanguageDto = transformer.languageDtoToJson(languageDto);
+            validate(jsonLanguageDto);
+            languageList.put(jsonLanguageDto);
+        }
+
+        return languageList;
     }
 
     public JSONObject getOne(long id) throws ObjectNotFoundException {

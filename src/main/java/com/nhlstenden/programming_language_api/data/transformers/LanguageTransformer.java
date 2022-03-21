@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhlstenden.programming_language_api.data.models.Language;
 import com.nhlstenden.programming_language_api.data.models.LanguageDto;
 import com.nhlstenden.programming_language_api.exceptions.TransformerErrorException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
@@ -51,23 +52,5 @@ public class LanguageTransformer {
         language.setFileExtension(languageDto.getFileExtension());
         language.setHelloWorldProgram(languageDto.getHelloWorldProgram());
         return language;
-    }
-
-    public JSONObject languageDtoListToJson(List<LanguageDto> languageDtoList){
-        try{
-            String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(languageDtoList);
-            return new JSONObject(json);
-        }catch(Exception ignored){
-            throw new TransformerErrorException("language");
-        }
-    }
-
-    public List<LanguageDto> jsonToLanguageDtoList(JSONObject jsonObject){
-        try{
-            TypeReference<List<LanguageDto>> mapType= new TypeReference<>() {};;
-            return objectMapper.readValue(String.valueOf(jsonObject), mapType);
-        }catch (Exception exception){
-            throw new TransformerErrorException("json");
-        }
     }
 }

@@ -3,6 +3,7 @@ package com.nhlstenden.programming_language_api.api_layers.controllers;
 import com.nhlstenden.programming_language_api.api_layers.services.LanguageService;
 
 import com.nhlstenden.programming_language_api.data.models.LanguageDto;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,8 +20,8 @@ public class LanguageController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity<LanguageDto> getAllLanguages(){
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public @ResponseBody ResponseEntity<JSONArray> getAllLanguages(){
+        return new ResponseEntity<>(languageService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
