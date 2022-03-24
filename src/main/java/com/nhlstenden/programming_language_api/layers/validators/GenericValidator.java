@@ -1,4 +1,4 @@
-package com.nhlstenden.programming_language_api.api_layers.validators;
+package com.nhlstenden.programming_language_api.layers.validators;
 
 import com.nhlstenden.programming_language_api.exceptions.InvalidSchemaException;
 import org.everit.json.schema.Schema;

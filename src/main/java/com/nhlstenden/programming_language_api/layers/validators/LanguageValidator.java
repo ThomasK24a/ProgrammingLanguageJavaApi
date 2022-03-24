@@ -1,6 +1,6 @@
-package com.nhlstenden.programming_language_api.api_layers.validators;
+package com.nhlstenden.programming_language_api.layers.validators;
 
-import com.nhlstenden.programming_language_api.data.models.Language;
+import com.nhlstenden.programming_language_api.models.Language;
 import org.springframework.stereotype.Component;
 
 @Component

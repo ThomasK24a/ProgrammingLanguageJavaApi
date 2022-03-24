@@ -1,4 +1,4 @@
-package com.nhlstenden.programming_language_api.data.models;
+package com.nhlstenden.programming_language_api.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

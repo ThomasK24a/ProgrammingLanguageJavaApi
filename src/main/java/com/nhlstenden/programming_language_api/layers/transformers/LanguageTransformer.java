@@ -1,8 +1,8 @@
-package com.nhlstenden.programming_language_api.data.transformers;
+package com.nhlstenden.programming_language_api.layers.transformers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.nhlstenden.programming_language_api.data.models.Language;
-import com.nhlstenden.programming_language_api.data.models.LanguageDto;
+import com.nhlstenden.programming_language_api.models.Language;
+import com.nhlstenden.programming_language_api.models.LanguageDto;
 import com.nhlstenden.programming_language_api.exceptions.TransformerErrorException;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;

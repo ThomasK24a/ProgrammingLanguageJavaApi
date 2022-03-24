@@ -1,13 +1,13 @@
-package com.nhlstenden.programming_language_api.data.models;
+package com.nhlstenden.programming_language_api.models;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Objects;
 
 @Data
 @AllArgsConstructor

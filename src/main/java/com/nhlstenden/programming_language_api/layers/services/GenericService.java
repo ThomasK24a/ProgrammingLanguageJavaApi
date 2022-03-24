@@ -1,7 +1,7 @@
-package com.nhlstenden.programming_language_api.api_layers.services;
+package com.nhlstenden.programming_language_api.layers.services;
 
-import com.nhlstenden.programming_language_api.api_layers.repositories.GenericRepository;
-import com.nhlstenden.programming_language_api.data.transformers.GenericTransformer;
+import com.nhlstenden.programming_language_api.layers.repositories.GenericRepository;
+import com.nhlstenden.programming_language_api.layers.transformers.GenericTransformer;
 import com.nhlstenden.programming_language_api.exceptions.ObjectNotFoundException;
 import org.json.JSONObject;
 

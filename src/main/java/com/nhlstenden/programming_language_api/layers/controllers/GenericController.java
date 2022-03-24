@@ -1,9 +1,9 @@
-package com.nhlstenden.programming_language_api.api_layers.controllers;
+package com.nhlstenden.programming_language_api.layers.controllers;
 
-import com.nhlstenden.programming_language_api.api_layers.repositories.GenericRepository;
-import com.nhlstenden.programming_language_api.api_layers.services.GenericService;
-import com.nhlstenden.programming_language_api.api_layers.validators.GenericValidator;
-import com.nhlstenden.programming_language_api.data.transformers.GenericTransformer;
+import com.nhlstenden.programming_language_api.layers.repositories.GenericRepository;
+import com.nhlstenden.programming_language_api.layers.services.GenericService;
+import com.nhlstenden.programming_language_api.layers.validators.GenericValidator;
+import com.nhlstenden.programming_language_api.layers.transformers.GenericTransformer;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
