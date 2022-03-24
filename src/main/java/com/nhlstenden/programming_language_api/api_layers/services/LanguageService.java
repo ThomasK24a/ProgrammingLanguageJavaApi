@@ -4,58 +4,12 @@ import com.nhlstenden.programming_language_api.api_layers.repositories.LanguageR
 import com.nhlstenden.programming_language_api.data.models.Language;
 import com.nhlstenden.programming_language_api.data.models.LanguageDto;
 import com.nhlstenden.programming_language_api.data.transformers.LanguageTransformer;
-import com.nhlstenden.programming_language_api.exceptions.ObjectNotFoundException;
-import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
-import javax.xml.crypto.dsig.XMLObject;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Component
-public class LanguageService {
-    LanguageRepository repository;
-    LanguageTransformer transformer;
+public class LanguageService extends GenericService<Language, LanguageDto, LanguageRepository, LanguageTransformer>{
 
     public LanguageService(LanguageRepository repository, LanguageTransformer transformer) {
-        this.repository = repository;
-        this.transformer = transformer;
+        super(repository, transformer);
     }
-
-    public List<LanguageDto> getAll(){
-        final Collection<Language> languages = repository.getAll();
-        return languages.stream().map(transformer::languageToLanguageDto)
-                .collect(Collectors.toList());
-    }
-
-    public LanguageDto getOne(long id) throws ObjectNotFoundException {
-        Language language = repository.getFromId(id);
-        return transformer.languageToLanguageDto(language);
-    }
-
-    public void save(JSONObject jsonObject) {
-        Language language = transformer.languageDtoToLanguage(transformer.jsonToLanguageDto(jsonObject));
-        repository.save(language);
-    }
-
-    public void update(JSONObject jsonObject, long id) {
-        Language language = transformer.languageDtoToLanguage(transformer.jsonToLanguageDto(jsonObject));
-        repository.update(language, id);
-    }
-
-    public void save(XMLObject xmlObject) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void update(XMLObject xmlObject, long id) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void delete(long languageId) throws ObjectNotFoundException {
-        repository.delete(languageId);
-    }
-
-
-
 }

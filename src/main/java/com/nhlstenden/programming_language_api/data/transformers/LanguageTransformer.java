@@ -1,7 +1,6 @@
 package com.nhlstenden.programming_language_api.data.transformers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhlstenden.programming_language_api.data.models.Language;
 import com.nhlstenden.programming_language_api.data.models.LanguageDto;
 import com.nhlstenden.programming_language_api.exceptions.TransformerErrorException;
@@ -10,14 +9,13 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LanguageTransformer {
-    private final ObjectMapper objectMapper;
+public class LanguageTransformer extends GenericTransformer<Language, LanguageDto> {
 
     public LanguageTransformer() {
-        objectMapper = new ObjectMapper();
+        super();
     }
 
-    public LanguageDto jsonToLanguageDto(JSONObject jsonLanguage){
+    public LanguageDto JsonToDTO(JSONObject jsonLanguage){
         try{
             TypeReference<LanguageDto> mapType= new TypeReference<>() {};;
             return objectMapper.readValue(String.valueOf(jsonLanguage), mapType);
@@ -26,7 +24,7 @@ public class LanguageTransformer {
         }
     }
 
-    public JSONObject languageDtoToJson(LanguageDto languageDto) {
+    public JSONObject DTOToJson(LanguageDto languageDto) {
         try{
             String jsonString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(languageDto);
             JSONParser parser = new JSONParser();
@@ -36,7 +34,8 @@ public class LanguageTransformer {
         }
     }
 
-    public LanguageDto languageToLanguageDto(Language language) {
+    @Override
+    public LanguageDto entityToDTO(Language language) {
         LanguageDto languageDto = new LanguageDto();
         languageDto.setLanguageName(language.getLanguageName());
         languageDto.setFileExtension(language.getFileExtension());
@@ -45,13 +44,15 @@ public class LanguageTransformer {
         return languageDto;
     }
 
-    public Language languageDtoToLanguage(LanguageDto languageDto) {
+    @Override
+    public Language dtoToEntity(LanguageDto languageDto) {
         Language language = new Language();
         language.setLanguageName(languageDto.getLanguageName());
         language.setFileExtension(languageDto.getFileExtension());
         language.setHelloWorldProgram(languageDto.getHelloWorldProgram());
         return language;
     }
+
 
 
 }
