@@ -1,10 +1,9 @@
 package com.nhlstenden.programming_language_api.api_layers.validators;
 
-import com.google.gson.JsonObject;
 import com.nhlstenden.programming_language_api.exceptions.InvalidSchemaException;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.loader.SchemaLoader;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
@@ -27,7 +26,7 @@ public class LanguageValidator {
         try (InputStream inputStream = this.getClass().getResourceAsStream(
                 "/schemas/LanguageJsonSchema.json")) {
             JSONParser jsonParser = new JSONParser();
-            JSONObject simpleJsonObject = (JSONObject) jsonParser.parse(
+            org.json.simple.JSONObject simpleJsonObject = (org.json.simple.JSONObject) jsonParser.parse(
                     new InputStreamReader(inputStream, StandardCharsets.UTF_8));
             org.json.JSONObject rawSchema = new org.json.JSONObject(simpleJsonObject.toJSONString());
             return SchemaLoader.load(rawSchema);
@@ -36,7 +35,7 @@ public class LanguageValidator {
         }
     }
 
-    public void validate(JsonObject jsonObject){
+    public void validate(JSONObject jsonObject){
         getJsonLanguageSchema().validate(jsonObject);
     }
 

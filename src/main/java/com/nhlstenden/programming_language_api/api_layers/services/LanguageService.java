@@ -1,10 +1,10 @@
 package com.nhlstenden.programming_language_api.api_layers.services;
 
-import com.google.gson.JsonObject;
 import com.nhlstenden.programming_language_api.api_layers.repositories.LanguageRepository;
-import com.nhlstenden.programming_language_api.data.models.*;
+import com.nhlstenden.programming_language_api.data.models.Language;
+import com.nhlstenden.programming_language_api.data.models.LanguageDto;
 import com.nhlstenden.programming_language_api.data.transformers.LanguageTransformer;
-import com.nhlstenden.programming_language_api.exceptions.*;
+import com.nhlstenden.programming_language_api.exceptions.ObjectNotFoundException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
@@ -34,12 +34,12 @@ public class LanguageService {
         return transformer.languageToLanguageDto(language);
     }
 
-    public void save(JsonObject jsonObject) {
+    public void save(JSONObject jsonObject) {
         Language language = transformer.languageDtoToLanguage(transformer.jsonToLanguageDto(jsonObject));
         repository.save(language);
     }
 
-    public void update(JsonObject jsonObject, long id) {
+    public void update(JSONObject jsonObject, long id) {
         Language language = transformer.languageDtoToLanguage(transformer.jsonToLanguageDto(jsonObject));
         repository.update(language, id);
     }

@@ -2,15 +2,12 @@ package com.nhlstenden.programming_language_api.data.transformers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
 import com.nhlstenden.programming_language_api.data.models.Language;
 import com.nhlstenden.programming_language_api.data.models.LanguageDto;
 import com.nhlstenden.programming_language_api.exceptions.TransformerErrorException;
-import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class LanguageTransformer {
@@ -20,7 +17,7 @@ public class LanguageTransformer {
         objectMapper = new ObjectMapper();
     }
 
-    public LanguageDto jsonToLanguageDto(JsonObject jsonLanguage){
+    public LanguageDto jsonToLanguageDto(JSONObject jsonLanguage){
         try{
             TypeReference<LanguageDto> mapType= new TypeReference<>() {};;
             return objectMapper.readValue(String.valueOf(jsonLanguage), mapType);
@@ -31,8 +28,9 @@ public class LanguageTransformer {
 
     public JSONObject languageDtoToJson(LanguageDto languageDto) {
         try{
-            String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(languageDto);
-            return new JSONObject(json);
+            String jsonString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(languageDto);
+            JSONParser parser = new JSONParser();
+            return (JSONObject) parser.parse(jsonString);
         }catch(Exception ignored){
             throw new TransformerErrorException("language");
         }
@@ -54,4 +52,6 @@ public class LanguageTransformer {
         language.setHelloWorldProgram(languageDto.getHelloWorldProgram());
         return language;
     }
+
+
 }
