@@ -5,21 +5,21 @@
   "description": "How to say Hello World in different programming languages",
   "link": "https://www.kaggle.com/ihelon/hello-world-in-programming-languages",
   "properties": {
-    "LanguageName": {
+    "languageName": {
       "type": "string",
       "description": "Name of the programming language",
       "maxLength": 100
     },
-    "Extension": {
+    "fileExtension": {
       "type": "string",
       "description": "Extension of the program file",
       "maxLength": 100
     },
-    "HelloWorldProgram": {
+    "helloWorldProgram": {
       "type": "string",
       "description": "How to say Hello World in that programming language"
     }
   },
-  "required": [ "LanguageName", "HelloWorldProgram" ],
+  "required": [ "languageName", "helloWorldProgram" ],
   "additionalProperties": false
 }
