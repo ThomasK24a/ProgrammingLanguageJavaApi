@@ -1,5 +1,6 @@
 package com.nhlstenden.programming_language_api.api_layers.services;
 
+import com.google.gson.JsonObject;
 import com.nhlstenden.programming_language_api.api_layers.repositories.LanguageRepository;
 import com.nhlstenden.programming_language_api.data.models.*;
 import com.nhlstenden.programming_language_api.data.transformers.LanguageTransformer;
@@ -33,12 +34,12 @@ public class LanguageService {
         return transformer.languageToLanguageDto(language);
     }
 
-    public void save(JSONObject jsonObject) {
+    public void save(JsonObject jsonObject) {
         Language language = transformer.languageDtoToLanguage(transformer.jsonToLanguageDto(jsonObject));
         repository.save(language);
     }
 
-    public void update(JSONObject jsonObject, long id) {
+    public void update(JsonObject jsonObject, long id) {
         Language language = transformer.languageDtoToLanguage(transformer.jsonToLanguageDto(jsonObject));
         repository.update(language, id);
     }

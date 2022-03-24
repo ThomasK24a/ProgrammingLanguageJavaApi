@@ -2,6 +2,7 @@ package com.nhlstenden.programming_language_api.data.transformers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
 import com.nhlstenden.programming_language_api.data.models.Language;
 import com.nhlstenden.programming_language_api.data.models.LanguageDto;
 import com.nhlstenden.programming_language_api.exceptions.TransformerErrorException;
@@ -19,7 +20,7 @@ public class LanguageTransformer {
         objectMapper = new ObjectMapper();
     }
 
-    public LanguageDto jsonToLanguageDto(JSONObject jsonLanguage){
+    public LanguageDto jsonToLanguageDto(JsonObject jsonLanguage){
         try{
             TypeReference<LanguageDto> mapType= new TypeReference<>() {};;
             return objectMapper.readValue(String.valueOf(jsonLanguage), mapType);
