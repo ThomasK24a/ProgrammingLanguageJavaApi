@@ -1,7 +1,6 @@
 package com.nhlstenden.programming_language_api.layers.repositories;
 
 import com.nhlstenden.programming_language_api.exceptions.ObjectNotFoundException;
-import com.nhlstenden.programming_language_api.models.Language;
 import com.nhlstenden.programming_language_api.models.LanguagePopularity;
 import org.springframework.stereotype.Component;
 

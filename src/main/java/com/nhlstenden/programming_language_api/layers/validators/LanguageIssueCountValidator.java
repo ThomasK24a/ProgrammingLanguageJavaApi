@@ -1,6 +1,5 @@
 package com.nhlstenden.programming_language_api.layers.validators;
 
-import com.nhlstenden.programming_language_api.models.Language;
 import com.nhlstenden.programming_language_api.models.LanguageIssueCount;
 import org.springframework.stereotype.Component;
 

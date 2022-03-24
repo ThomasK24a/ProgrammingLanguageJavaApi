@@ -1,17 +1,14 @@
 package com.nhlstenden.programming_language_api.models;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "language_github_issues")
 public class LanguageIssueCount {
