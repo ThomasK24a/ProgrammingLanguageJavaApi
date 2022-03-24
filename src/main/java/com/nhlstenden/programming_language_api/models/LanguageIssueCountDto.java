@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GithubIssuesDto {
+public class LanguageIssueCountDto {
     private long id;
     private long languageId;
     private int year;

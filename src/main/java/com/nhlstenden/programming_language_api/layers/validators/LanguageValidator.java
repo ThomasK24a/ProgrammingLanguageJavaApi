@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 public class LanguageValidator extends GenericValidator<Language>{
 
     public LanguageValidator() {
-        super("language", "/schemas/LanguageJsonSchema.json", "");
+        super("language", "/schemas/LanguageJsonSchema.json", "/schemas/LanguageXmlSchema.xsd");
     }
 }

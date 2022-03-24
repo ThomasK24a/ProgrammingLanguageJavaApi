@@ -14,7 +14,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "language_github_issues")
-public class GithubIssues {
+public class LanguageIssueCount {
     @Id
     private long id;
     @ManyToOne(fetch = FetchType.LAZY)
