@@ -1,12 +1,15 @@
 package com.nhlstenden.programming_language_api.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -16,7 +19,8 @@ public class LanguagePopularity {
     private long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="language_id")
+    @ToString.Exclude
     private Language language;
     private int year;
-    private int ratingPercentile;   //Percentage of [...] using this language in that year
+    private int ratingPercentile;   //Percentage of projects using this language in that year
 }
