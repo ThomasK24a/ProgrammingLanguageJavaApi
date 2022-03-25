@@ -48,14 +48,10 @@ public abstract class GenericValidator<Entity> {
         getJsonSchema().validate(jsonObject);
     }
 
-    private javax.xml.validation.Schema getXmlSchema(){
-            try{
-                SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-                return factory.newSchema(new StreamSource(this.getClass().getResourceAsStream(xmlSchemaUrl)));
-            } catch (SAXException e) {
-                //TODO: replace with custom runtime exception with info about schema violation
-                throw new InvalidSchemaException(entityName);
-            }
+    private javax.xml.validation.Schema getXmlSchema() throws SAXException {
+            SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            return factory.newSchema(new StreamSource(this.getClass().getResourceAsStream(xmlSchemaUrl)));
+
         }
 
     public void validate(String xmlObject) throws SAXException {

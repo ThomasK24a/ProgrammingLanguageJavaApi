@@ -14,7 +14,6 @@ import java.io.StringReader;
 public abstract class GenericTransformer<Entity, DTO> {
     private final Class<DTO> type;
 
-
     protected final ObjectMapper objectMapper;
 
     public GenericTransformer(Class<DTO> type) {
@@ -48,6 +47,5 @@ public abstract class GenericTransformer<Entity, DTO> {
         } catch (JAXBException e) {
             throw new IllegalStateException(e);
         }
-
     }
 }
