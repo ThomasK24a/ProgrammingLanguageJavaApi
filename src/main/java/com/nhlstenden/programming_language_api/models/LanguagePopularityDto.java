@@ -14,5 +14,5 @@ public class LanguagePopularityDto {
     private long id;
     private String languageName;
     private int year;
-    private int ratingPercentile;   //Percentage of projects using this language in that year
+    private float ratingPercentile;   //Percentage of projects using this language in that year
 }

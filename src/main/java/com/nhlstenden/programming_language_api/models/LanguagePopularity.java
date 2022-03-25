@@ -14,10 +14,12 @@ import javax.persistence.*;
 public class LanguagePopularity {
     @Id
     private long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="language_id")
     @ToString.Exclude
     private Language language;
+    @Column(name="year")
     private int year;
-    private int ratingPercentile;   //Percentage of projects using this language in that year
+    @Column(name="rating_percentile")
+    private float ratingPercentile;   //Percentage of projects using this language in that year
 }
