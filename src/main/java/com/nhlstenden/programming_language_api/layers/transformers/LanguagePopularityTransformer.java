@@ -38,7 +38,7 @@ public class LanguagePopularityTransformer extends GenericTransformer<LanguagePo
     @Override
     public LanguagePopularityDto entityToDTO(LanguagePopularity languagePopularity) {
         LanguagePopularityDto languagePopularityDto = new LanguagePopularityDto();
-        languagePopularityDto.setLanguageId(languagePopularity.getLanguage().getId());
+        languagePopularityDto.setLanguageName(languagePopularity.getLanguage().getLanguageName());
         languagePopularityDto.setYear(languagePopularity.getYear());
         languagePopularityDto.setRatingPercentile(languagePopularity.getRatingPercentile());
         languagePopularityDto.setId(languagePopularity.getId());

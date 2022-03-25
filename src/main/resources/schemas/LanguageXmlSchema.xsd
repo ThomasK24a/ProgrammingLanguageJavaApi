@@ -1,27 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	elementFormDefault="qualified"
-	targetNamespace="http://nhlstenden.com/programming_language_api"
-   	xmlns:tns="http://nhlstenden.com/programming_language_api">
-	<xs:element name="HelloWorldInLanguage" type="tns:item"/>
-
+	elementFormDefault="qualified">
+	<xs:element name="language" type="item"/>
 	<xs:complexType name="item">
 		<xs:sequence>
-			<xs:element name="LanguageName">
+			<xs:element name="languageName">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:maxLength value="50"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="Extension" nillable="true">
+			<xs:element name="fileExtension" nillable="true">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:maxLength value="50"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="HelloWorldProgram" type="xs:string"/>
+			<xs:element name="helloWorldProgram" type="xs:string"/>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

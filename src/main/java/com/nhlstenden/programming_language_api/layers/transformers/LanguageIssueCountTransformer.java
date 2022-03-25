@@ -37,7 +37,7 @@ public class LanguageIssueCountTransformer extends GenericTransformer<LanguageIs
     @Override
     public LanguageIssueCountDto entityToDTO(LanguageIssueCount languageIssueCount) {
         LanguageIssueCountDto languageIssueCountDto = new LanguageIssueCountDto();
-        languageIssueCountDto.setLanguageId(languageIssueCount.getLanguage().getId());
+        languageIssueCountDto.setLanguageName(languageIssueCount.getLanguage().getLanguageName());
         languageIssueCountDto.setIssueCount(languageIssueCount.getIssueCount());
         languageIssueCountDto.setQuarter(languageIssueCount.getQuarter());
         languageIssueCountDto.setYear(languageIssueCount.getYear());
