@@ -4,9 +4,9 @@ API for the course Data Processing
 
 Create by Thomas Koops 
 
-##How to install
+## How to install
 
-###Prerequisites
+### Prerequisites
 The project will require the following to run
 * Maven
 * A MySQL database
@@ -14,14 +14,14 @@ The project will require the following to run
 
 XAMPP is recommended as it includes both phpMyAdmin and TomCat
 
-###Configuration
+### Configuration
 Clone the project to the desired folder
 
 Run the database.sql file in a MySQL database
 
 Change the database config settings in Config.java to the correct username, password and database link
 
-###Run the project
+### Run the project
 Use the Maven command "mvn clean install"
 
 Export the generated war file inside /target/ to the webapps folder of TomCat
