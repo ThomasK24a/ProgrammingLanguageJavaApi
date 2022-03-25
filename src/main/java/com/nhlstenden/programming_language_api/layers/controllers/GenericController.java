@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.xml.sax.SAXException;
 
-import javax.xml.crypto.dsig.XMLObject;
 import java.util.List;
 
 public abstract class GenericController <Service extends GenericService<Entity, DTO, Repository, Transformer>, Validator extends GenericValidator<Entity>, DTO, Entity, Repository extends GenericRepository<Entity>, Transformer extends GenericTransformer<Entity, DTO>>{

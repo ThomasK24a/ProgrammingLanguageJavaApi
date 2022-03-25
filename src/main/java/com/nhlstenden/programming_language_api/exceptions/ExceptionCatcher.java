@@ -1,6 +1,5 @@
 package com.nhlstenden.programming_language_api.exceptions;
 
-import io.swagger.annotations.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
