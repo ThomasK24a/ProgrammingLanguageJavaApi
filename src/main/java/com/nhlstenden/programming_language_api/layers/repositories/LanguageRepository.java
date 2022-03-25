@@ -35,5 +35,11 @@ public class LanguageRepository extends GenericRepository<Language> {
         entityManager.merge(detachedLanguage);
 
     }
+
+    public Language getLanguageFromName(String languageName){
+        return entityManager.createQuery(
+                        "SELECT language from Language language WHERE language.languageName = :languageName", Language.class).
+                setParameter("languageName", languageName).getSingleResult();
+    }
 }
 

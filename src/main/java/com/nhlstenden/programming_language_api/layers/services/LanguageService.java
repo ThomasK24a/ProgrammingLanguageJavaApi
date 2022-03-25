@@ -12,4 +12,8 @@ public class LanguageService extends GenericService<Language, LanguageDto, Langu
     public LanguageService(LanguageRepository repository, LanguageTransformer transformer) {
         super(repository, transformer);
     }
+
+    public Language getLanguageFromName(String languageName) {
+        return repository.getLanguageFromName(languageName);
+    }
 }

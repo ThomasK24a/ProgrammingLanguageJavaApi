@@ -2,6 +2,7 @@ package com.nhlstenden.programming_language_api.layers.transformers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.nhlstenden.programming_language_api.exceptions.TransformerErrorException;
+import com.nhlstenden.programming_language_api.layers.services.LanguageService;
 import com.nhlstenden.programming_language_api.models.LanguageIssueCount;
 import com.nhlstenden.programming_language_api.models.LanguageIssueCountDto;
 import org.json.JSONObject;
@@ -11,8 +12,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class LanguageIssueCountTransformer extends GenericTransformer<LanguageIssueCount, LanguageIssueCountDto> {
 
-    public LanguageIssueCountTransformer() {
+    private final LanguageService languageService;
+
+    public LanguageIssueCountTransformer(LanguageService languageService) {
         super(LanguageIssueCountDto.class);
+        this.languageService = languageService;
     }
 
     public LanguageIssueCountDto JsonToDTO(JSONObject jsonLanguageIssueCount){
@@ -48,7 +52,7 @@ public class LanguageIssueCountTransformer extends GenericTransformer<LanguageIs
     @Override
     public LanguageIssueCount dtoToEntity(LanguageIssueCountDto languageIssueCountDto) {
         LanguageIssueCount languageIssueCount = new LanguageIssueCount();
-        //languageIssueCount.setLanguage(); TODO: Get language
+        languageIssueCount.setLanguage(languageService.getLanguageFromName(languageIssueCountDto.getLanguageName()));
         languageIssueCount.setIssueCount(languageIssueCountDto.getIssueCount());
         languageIssueCount.setQuarter(languageIssueCountDto.getQuarter());
         languageIssueCount.setYear(languageIssueCountDto.getYear());
