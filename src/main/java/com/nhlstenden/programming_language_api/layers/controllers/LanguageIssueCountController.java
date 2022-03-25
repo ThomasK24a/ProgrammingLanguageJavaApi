@@ -12,11 +12,13 @@ import com.nhlstenden.programming_language_api.models.Language;
 import com.nhlstenden.programming_language_api.models.LanguageDto;
 import com.nhlstenden.programming_language_api.models.LanguageIssueCount;
 import com.nhlstenden.programming_language_api.models.LanguageIssueCountDto;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "issues")
+@Api(value = "Language issue count controller", protocols = "GET,PUT,POST,DELETE", consumes = "application/json, application/xml", produces = "application/json, application/xml")
 public class LanguageIssueCountController extends GenericController<LanguageIssueCountService, LanguageIssueCountValidator, LanguageIssueCountDto, LanguageIssueCount, LanguageIssueCountRepository, LanguageIssueCountTransformer>{
     public LanguageIssueCountController(LanguageIssueCountService languageService, LanguageIssueCountValidator languageValidator) {
         super(languageService, languageValidator);

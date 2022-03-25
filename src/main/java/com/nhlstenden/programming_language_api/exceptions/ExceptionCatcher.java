@@ -1,5 +1,6 @@
 package com.nhlstenden.programming_language_api.exceptions;
 
+import io.swagger.annotations.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -33,10 +34,17 @@ public class ExceptionCatcher {
         return new ErrorMessage(exception.getMessage());
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidIdException.class)
+    public ErrorMessage handleInvalidIdException(RuntimeException exception) {
+        return new ErrorMessage(exception.getMessage());
+    }
+
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(RuntimeException.class)
     public ErrorMessage handleAnyRuntimeException(RuntimeException exception) {
         return new ErrorMessage("Something unexpected went wrong: " + exception.getMessage());
     }
+
 
 }
