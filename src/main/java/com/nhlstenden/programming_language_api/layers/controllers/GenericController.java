@@ -43,7 +43,7 @@ public abstract class GenericController <Service extends GenericService<Entity, 
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Replace a single value in the database")
+    @ApiOperation(value = "Replace a single value in the database, accepts both xml and json")
     @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid ID supplied or invalid entity supplied"),
             @ApiResponse(code = 404, message = "Entity to replace not found") })
     public @ResponseBody ResponseEntity<Void> updateEntityJson(@PathVariable("id") String idString, @RequestBody String jsonString) {
@@ -54,7 +54,7 @@ public abstract class GenericController <Service extends GenericService<Entity, 
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Add a single value to the database")
+    @ApiOperation(value = "Add a single value to the database, accepts both xml and json")
     @ApiResponse(code = 400, message = "Invalid entity supplied")
     public @ResponseBody ResponseEntity<Void> postEntityJson(@RequestBody String jsonString) {
         System.out.println(jsonString);
@@ -65,7 +65,7 @@ public abstract class GenericController <Service extends GenericService<Entity, 
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_XML_VALUE)
-    @ApiOperation(value = "Replace a single value in the database")
+    @ApiOperation(value = "Replace a single value in the database, accepts both xml and json")
     @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid ID supplied or invalid entity supplied"),
             @ApiResponse(code = 404, message = "Entity to replace not found") })
     public @ResponseBody ResponseEntity<Void> updateEntityXml(@PathVariable("id") String idString, @RequestBody String xmlString) throws SAXException {
@@ -75,7 +75,7 @@ public abstract class GenericController <Service extends GenericService<Entity, 
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
-    @ApiOperation(value = "Add a single value to the database")
+    @ApiOperation(value = "Add a single value to the database, accepts both xml and json")
     @ApiResponse(code = 400, message = "Invalid entity supplied")
     public @ResponseBody ResponseEntity<Void> postEntityXml(@RequestBody String xmlString) throws SAXException {
         validator.validate(xmlString);

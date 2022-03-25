@@ -1,5 +1,7 @@
 package com.nhlstenden.programming_language_api.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @AllArgsConstructor
 @NoArgsConstructor
 @XmlRootElement(name="language")
+@ApiModel(description = "How to say Hello World in different programming languages")
 public class LanguageDto {
     private long id;
     private String languageName;
