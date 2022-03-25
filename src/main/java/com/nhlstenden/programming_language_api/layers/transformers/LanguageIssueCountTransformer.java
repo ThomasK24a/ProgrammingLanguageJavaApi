@@ -1,8 +1,10 @@
 package com.nhlstenden.programming_language_api.layers.transformers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.nhlstenden.programming_language_api.exceptions.ObjectNotFoundException;
 import com.nhlstenden.programming_language_api.exceptions.TransformerErrorException;
 import com.nhlstenden.programming_language_api.layers.services.LanguageService;
+import com.nhlstenden.programming_language_api.models.Language;
 import com.nhlstenden.programming_language_api.models.LanguageIssueCount;
 import com.nhlstenden.programming_language_api.models.LanguageIssueCountDto;
 import org.json.JSONObject;
@@ -52,7 +54,11 @@ public class LanguageIssueCountTransformer extends GenericTransformer<LanguageIs
     @Override
     public LanguageIssueCount dtoToEntity(LanguageIssueCountDto languageIssueCountDto) {
         LanguageIssueCount languageIssueCount = new LanguageIssueCount();
-        languageIssueCount.setLanguage(languageService.getLanguageFromName(languageIssueCountDto.getLanguageName()));
+        Language language = languageService.getLanguageFromName(languageIssueCountDto.getLanguageName());
+        if(language == null){
+            throw new ObjectNotFoundException(languageIssueCountDto.getLanguageName());
+        }
+        languageIssueCount.setLanguage(language);
         languageIssueCount.setIssueCount(languageIssueCountDto.getIssueCount());
         languageIssueCount.setQuarter(languageIssueCountDto.getQuarter());
         languageIssueCount.setYear(languageIssueCountDto.getYear());

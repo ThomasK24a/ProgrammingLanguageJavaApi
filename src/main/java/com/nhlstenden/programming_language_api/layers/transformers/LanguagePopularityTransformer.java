@@ -1,8 +1,10 @@
 package com.nhlstenden.programming_language_api.layers.transformers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.nhlstenden.programming_language_api.exceptions.ObjectNotFoundException;
 import com.nhlstenden.programming_language_api.exceptions.TransformerErrorException;
 import com.nhlstenden.programming_language_api.layers.services.LanguageService;
+import com.nhlstenden.programming_language_api.models.Language;
 import com.nhlstenden.programming_language_api.models.LanguagePopularity;
 import com.nhlstenden.programming_language_api.models.LanguagePopularityDto;
 import org.json.JSONObject;
@@ -51,7 +53,11 @@ public class LanguagePopularityTransformer extends GenericTransformer<LanguagePo
     @Override
     public LanguagePopularity dtoToEntity(LanguagePopularityDto languagePopularityDto) {
         LanguagePopularity languagePopularity = new LanguagePopularity();
-        languagePopularity.setLanguage(languageService.getLanguageFromName(languagePopularityDto.getLanguageName()));
+        Language language = languageService.getLanguageFromName(languagePopularityDto.getLanguageName());
+        if(language == null){
+            throw new ObjectNotFoundException(languagePopularityDto.getLanguageName());
+        }
+        languagePopularity.setLanguage(language);
         languagePopularity.setYear(languagePopularityDto.getYear());
         languagePopularity.setRatingPercentile(languagePopularityDto.getRatingPercentile());
         return languagePopularity;
