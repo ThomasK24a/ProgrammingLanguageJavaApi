@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @AllArgsConstructor
 @NoArgsConstructor
 @XmlRootElement(name="language")
-@ApiModel(description = "How to say Hello World in different programming languages")
+@ApiModel(value = "language", description = "How to say Hello World in different programming languages")
 public class LanguageDto {
     private long id;
     private String languageName;
