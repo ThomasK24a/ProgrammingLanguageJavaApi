@@ -58,10 +58,10 @@ public abstract class GenericValidator<Entity> {
             }
         }
 
-    public void validate(XMLObject xmlObject) throws SAXException {
+    public void validate(String xmlObject) throws SAXException {
         try{
             Validator validator = getXmlSchema().newValidator();
-            validator.validate(new StreamSource(new ByteArrayInputStream(xmlObject.toString().getBytes())));
+            validator.validate(new StreamSource(new ByteArrayInputStream(xmlObject.getBytes())));
         } catch (IOException e) {
             throw new InvalidSchemaException(entityName);
         }

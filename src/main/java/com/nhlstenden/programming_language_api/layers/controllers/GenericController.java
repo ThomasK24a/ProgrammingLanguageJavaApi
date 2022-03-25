@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.xml.sax.SAXException;
 
+import javax.xml.crypto.dsig.XMLObject;
 import java.util.List;
 
 public abstract class GenericController <Service extends GenericService<Entity, DTO, Repository, Transformer>, Validator extends GenericValidator<Entity>, DTO, Entity, Repository extends GenericRepository<Entity>, Transformer extends GenericTransformer<Entity, DTO>>{
@@ -21,13 +23,13 @@ public abstract class GenericController <Service extends GenericService<Entity, 
         this.validator = validator;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public @ResponseBody ResponseEntity<List<DTO>> getAllEntities(){
         List<DTO> returnObject = service.getAll();
         return ResponseEntity.ok(returnObject);
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public @ResponseBody ResponseEntity<DTO> getEntity(@PathVariable("id") String idString) {
         int id = Integer.parseInt(idString);
         return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
@@ -49,6 +51,21 @@ public abstract class GenericController <Service extends GenericService<Entity, 
         JSONObject jsonObject = new JSONObject(jsonString);
         validator.validate(jsonObject);
         service.save(jsonObject);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_XML_VALUE)
+    public @ResponseBody ResponseEntity<Void> updateEntityXml(@PathVariable("id") String idString, @RequestBody String xmlString) throws SAXException {
+        int id = Integer.parseInt(idString);
+        validator.validate(xmlString);
+        service.update(xmlString, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
+    public @ResponseBody ResponseEntity<Void> postEntityXml(@RequestBody String xmlString) throws SAXException {
+        validator.validate(xmlString);
+        service.save(xmlString);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

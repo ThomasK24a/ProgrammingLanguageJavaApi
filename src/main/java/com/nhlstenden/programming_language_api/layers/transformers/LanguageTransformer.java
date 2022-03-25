@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class LanguageTransformer extends GenericTransformer<Language, LanguageDto> {
 
     public LanguageTransformer() {
-        super();
+        super(LanguageDto.class);
     }
 
     public LanguageDto JsonToDTO(JSONObject jsonLanguage){

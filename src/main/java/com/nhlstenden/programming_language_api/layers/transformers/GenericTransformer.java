@@ -7,11 +7,19 @@ import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import java.io.StringReader;
+
 @Component
 public abstract class GenericTransformer<Entity, DTO> {
+    private final Class<DTO> type;
+
+
     protected final ObjectMapper objectMapper;
 
-    public GenericTransformer() {
+    public GenericTransformer(Class<DTO> type) {
+        this.type = type;
         objectMapper = new ObjectMapper();
     }
 
@@ -40,4 +48,19 @@ public abstract class GenericTransformer<Entity, DTO> {
 
     public abstract JSONObject DTOToJson(DTO dto);
 
+    public DTO xmlToDTO(String xmlString){
+        JAXBContext context;
+        try {
+            context = JAXBContext.newInstance(type);
+            Object dtoObject = context.createUnmarshaller()
+                    .unmarshal(new StringReader(xmlString));
+
+            @SuppressWarnings("unchecked")
+            DTO dto = (DTO) dtoObject;
+            return dto;
+        } catch (JAXBException e) {
+            throw new IllegalStateException(e);
+        }
+
+    }
 }

@@ -40,12 +40,14 @@ public abstract class GenericService<Entity, DTO, Repository extends GenericRepo
         repository.update(entity, id);
     }
 
-    public void save(XMLObject xmlObject) {
-        throw new UnsupportedOperationException();
+    public void save(String xmlString) {
+        Entity entity = transformer.dtoToEntity(transformer.xmlToDTO(xmlString));
+        repository.save(entity);
     }
 
-    public void update(XMLObject xmlObject, long id) {
-        throw new UnsupportedOperationException();
+    public void update(String xmlObject, long id) {
+        Entity entity = transformer.dtoToEntity(transformer.xmlToDTO(xmlObject));
+        repository.update(entity,id);
     }
 
     public void delete(long id) throws ObjectNotFoundException {

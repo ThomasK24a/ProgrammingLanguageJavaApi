@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class LanguageIssueCountTransformer extends GenericTransformer<LanguageIssueCount, LanguageIssueCountDto> {
 
     public LanguageIssueCountTransformer() {
-        super();
+        super(LanguageIssueCountDto.class);
     }
 
     public LanguageIssueCountDto JsonToDTO(JSONObject jsonLanguageIssueCount){
