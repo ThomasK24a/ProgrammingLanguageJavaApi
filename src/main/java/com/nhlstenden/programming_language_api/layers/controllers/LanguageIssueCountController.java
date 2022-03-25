@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "languages")
+@RequestMapping(value = "issues")
 public class LanguageIssueCountController extends GenericController<LanguageIssueCountService, LanguageIssueCountValidator, LanguageIssueCountDto, LanguageIssueCount, LanguageIssueCountRepository, LanguageIssueCountTransformer>{
     public LanguageIssueCountController(LanguageIssueCountService languageService, LanguageIssueCountValidator languageValidator) {
         super(languageService, languageValidator);

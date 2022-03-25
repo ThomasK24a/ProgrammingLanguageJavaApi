@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "languages")
+@RequestMapping(value = "popularity")
 public class LanguagePopularityController extends GenericController<LanguagePopularityService, LanguagePopularityValidator, LanguagePopularityDto, LanguagePopularity, LanguagePopularityRepository, LanguagePopularityTransformer>{
     public LanguagePopularityController(LanguagePopularityService languagePopularityService, LanguagePopularityValidator languagePopularityValidator) {
         super(languagePopularityService, languagePopularityValidator);
