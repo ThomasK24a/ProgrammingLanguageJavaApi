@@ -10,6 +10,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import java.io.StringReader;
 
+/**
+ * Class used to transform models between json/xml, entities and DTOs
+ */
 @Component
 public abstract class GenericTransformer<Entity, DTO> {
     private final Class<DTO> type;
@@ -21,14 +24,10 @@ public abstract class GenericTransformer<Entity, DTO> {
         objectMapper = new ObjectMapper();
     }
 
-    public DTO jsonToDTO(JSONObject jsonEntity){
-        try{
-            TypeReference<DTO> mapType= new TypeReference<>() {};;
-            return objectMapper.readValue(String.valueOf(jsonEntity), mapType);
-        }catch (Exception exception){
-            throw new TransformerErrorException("json");
-        }
-    }
+    /**
+     * Needs to be abstract because TypeReference doesn't support generics
+     */
+    public abstract DTO jsonToDTO(JSONObject jsonEntity);
 
     public abstract DTO entityToDTO(Entity entity);
 
@@ -40,7 +39,7 @@ public abstract class GenericTransformer<Entity, DTO> {
             context = JAXBContext.newInstance(type);
             Object dtoObject = context.createUnmarshaller()
                     .unmarshal(new StringReader(xmlString));
-
+            //as type will always be the same class as DTO checking is redundant
             @SuppressWarnings("unchecked")
             DTO dto = (DTO) dtoObject;
             return dto;

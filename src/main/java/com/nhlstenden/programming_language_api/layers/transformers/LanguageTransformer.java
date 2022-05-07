@@ -1,7 +1,10 @@
 package com.nhlstenden.programming_language_api.layers.transformers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.nhlstenden.programming_language_api.exceptions.TransformerErrorException;
 import com.nhlstenden.programming_language_api.models.Language;
 import com.nhlstenden.programming_language_api.models.LanguageDto;
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,6 +12,16 @@ public class LanguageTransformer extends GenericTransformer<Language, LanguageDt
 
     public LanguageTransformer() {
         super(LanguageDto.class);
+    }
+
+    @Override
+    public LanguageDto jsonToDTO(JSONObject jsonEntity) {
+        try{
+            TypeReference<LanguageDto> mapType= new TypeReference<>() {};;
+            return objectMapper.readValue(String.valueOf(jsonEntity), mapType);
+        }catch (Exception exception){
+            throw new TransformerErrorException("json");
+        }
     }
 
     @Override

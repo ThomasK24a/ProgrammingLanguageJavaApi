@@ -1,10 +1,14 @@
 package com.nhlstenden.programming_language_api.layers.transformers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.nhlstenden.programming_language_api.exceptions.ObjectNotFoundException;
+import com.nhlstenden.programming_language_api.exceptions.TransformerErrorException;
 import com.nhlstenden.programming_language_api.layers.services.LanguageService;
 import com.nhlstenden.programming_language_api.models.Language;
 import com.nhlstenden.programming_language_api.models.LanguageIssueCount;
 import com.nhlstenden.programming_language_api.models.LanguageIssueCountDto;
+import com.nhlstenden.programming_language_api.models.LanguagePopularityDto;
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,6 +19,16 @@ public class LanguageIssueCountTransformer extends GenericTransformer<LanguageIs
     public LanguageIssueCountTransformer(LanguageService languageService) {
         super(LanguageIssueCountDto.class);
         this.languageService = languageService;
+    }
+
+    @Override
+    public LanguageIssueCountDto jsonToDTO(JSONObject jsonEntity) {
+        try{
+            TypeReference<LanguageIssueCountDto> mapType= new TypeReference<>() {};;
+            return objectMapper.readValue(String.valueOf(jsonEntity), mapType);
+        }catch (Exception exception){
+            throw new TransformerErrorException("json");
+        }
     }
 
     @Override
