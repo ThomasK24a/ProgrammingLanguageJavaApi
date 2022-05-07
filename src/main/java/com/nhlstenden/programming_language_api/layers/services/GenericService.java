@@ -10,6 +10,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Used to link the controller with the repository
+ * @param <Entity>
+ * @param <DTO>
+ * @param <Repository>
+ * @param <Transformer>
+ */
 public abstract class GenericService<Entity, DTO, Repository extends GenericRepository<Entity>, Transformer extends GenericTransformer<Entity, DTO>>{
     Repository repository;
     Transformer transformer;

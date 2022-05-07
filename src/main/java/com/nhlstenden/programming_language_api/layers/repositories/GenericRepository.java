@@ -8,6 +8,10 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * Uses Javax.persistence to store Entity objects into a sql database
+ * @param <Entity> Entity object that has the follows the format of the table it is associated with
+ */
 @Component
 public abstract class GenericRepository <Entity> {
     @PersistenceContext(unitName = "PlaPersistenceUnit")

@@ -17,7 +17,18 @@ import org.xml.sax.SAXException;
 
 import java.util.List;
 
-public abstract class GenericController <Service extends GenericService<Entity, DTO, Repository, Transformer>, Validator extends GenericValidator<Entity>, DTO, Entity, Repository extends GenericRepository<Entity>, Transformer extends GenericTransformer<Entity, DTO>>{
+/**
+ * Creates endpoints for each CRUD operation (Create, Read, Update, Delete) of the given object
+ * @param <Service> Service connects the controller with the rest of the application
+ * @param <Validator> Validates the json and xml of the object using their respective schemas
+ * @param <DTO> Model of object that is generally used in the business layer of the code,
+ *             as it is easier to manipulate the object
+ * @param <Entity> Model of object that uses javax persistence and is stored in the sql database, needs to implement
+ *                javax.persistence entity annotation
+ * @param <Repository> Repository that is used to communicate with the object's respective table in the database
+ * @param <Transformer> Transforms the object between the json/xml string, dto model and entity model
+ */
+public abstract class GenericController <Service extends GenericService<Entity, DTO, Repository, Transformer>, Validator extends GenericValidator, DTO, Entity, Repository extends GenericRepository<Entity>, Transformer extends GenericTransformer<Entity, DTO>>{
     private final Service service;
     private final Validator validator;
 
