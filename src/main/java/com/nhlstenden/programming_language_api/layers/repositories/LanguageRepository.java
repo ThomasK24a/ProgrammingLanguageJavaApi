@@ -37,9 +37,13 @@ public class LanguageRepository extends GenericRepository<Language> {
     }
 
     public Language getLanguageFromName(String languageName){
-        return entityManager.createQuery(
+        List<Language> languages = entityManager.createQuery(
                         "SELECT language from Language language WHERE language.languageName = :languageName", Language.class).
-                setParameter("languageName", languageName).getSingleResult();
+                setParameter("languageName", languageName).getResultList();
+        if(languages.isEmpty()){
+            throw new ObjectNotFoundException(languageName);
+        }
+        return languages.get(0);
     }
 }
 
