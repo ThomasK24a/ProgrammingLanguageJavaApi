@@ -5,13 +5,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 @RestControllerAdvice
 public class ExceptionCatcher {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(SAXException.class)
-    public ErrorMessage handleSAXException(RuntimeException exception) {
+    @ExceptionHandler({SAXException.class, SAXParseException.class})
+    public ErrorMessage handleSAXException(SAXException exception) {
         return new ErrorMessage("Validation error: " + exception.getMessage());
     }
 
@@ -42,6 +43,12 @@ public class ExceptionCatcher {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(RuntimeException.class)
     public ErrorMessage handleAnyRuntimeException(RuntimeException exception) {
+        return new ErrorMessage("Something unexpected went wrong: " + exception.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public ErrorMessage handleAnyException(Exception exception) {
         return new ErrorMessage("Something unexpected went wrong: " + exception.getMessage());
     }
 }

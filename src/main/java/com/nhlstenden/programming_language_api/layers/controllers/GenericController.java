@@ -79,7 +79,7 @@ public abstract class GenericController <Service extends GenericService<Entity, 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_XML_VALUE)
     @ApiOperation(value = "Replace a single value in the database, accepts both xml and json")
     @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid ID supplied or invalid entity supplied"),
-            @ApiResponse(code = 404, message = "Entity to replace not found") })
+    @ApiResponse(code = 404, message = "Entity to replace not found") })
     public @ResponseBody ResponseEntity<Void> updateEntityXml(@PathVariable("id") String idString, @RequestBody String xmlString) throws SAXException {
         validator.validate(xmlString);
         service.update(xmlString, parseId(idString));

@@ -5,29 +5,29 @@
   "description": "The amount of issues in each language in Github per quarter",
   "link": "https://www.kaggle.com/isaacwen/github-programming-languages-data",
   "properties": {
-    "LanguageName": {
+    "languageName": {
       "type": "string",
       "description": "Name of the programming language",
       "maxLength": 100
     },
-    "Year": {
+    "year": {
       "type": "integer",
       "description": "The year of the statistic",
       "minimum": 1900,
       "maximum": 9999
     },
-    "Quarter": {
+    "quarter": {
       "type": "integer",
       "description": "The quarter of the statistic",
       "minimum": 1,
       "maximum": 4
     },
-    "Count": {
+    "issueCount": {
       "type": "integer",
       "description": "The amount of issues there were in that year and quarter for that language",
       "minimum": 0
     }
   },
-  "required": [ "LanguageName", "Year", "Quarter", "Count"],
+  "required": [ "languageName", "year", "quarter", "issueCount"],
   "additionalProperties": false
 }

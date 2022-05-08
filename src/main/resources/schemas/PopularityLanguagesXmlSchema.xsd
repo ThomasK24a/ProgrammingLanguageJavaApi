@@ -22,7 +22,7 @@
 			</xs:element>
 			<xs:element name="ratingPercentile">
 				<xs:simpleType>
-					<xs:restriction base="xs:int">
+					<xs:restriction base="xs:double">
 						<xs:minInclusive value="0"/>
 						<xs:maxInclusive value="100"/>
 					</xs:restriction>

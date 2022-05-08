@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @AllArgsConstructor
 @NoArgsConstructor
 @XmlRootElement(name="languagePopularity")
-@ApiModel(value = "language popularity", description = "The popularity of languages recorded in january of their respective year")
+@ApiModel(value = "language popularity", description = "The popularity of languages recorded in january of their respective year, for xml requires the root object languagePopularity")
 public class LanguagePopularityDto {
     private long id;
     private String languageName;

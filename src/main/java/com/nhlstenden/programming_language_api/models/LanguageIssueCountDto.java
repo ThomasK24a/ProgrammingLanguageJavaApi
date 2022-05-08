@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @AllArgsConstructor
 @NoArgsConstructor
 @XmlRootElement(name="languageIssueCount")
-@ApiModel(value = "language issue count", description = "The amount of issues in each language in Github per quarter")
+@ApiModel(value = "language issue count", description = "The amount of issues in each language in Github per quarter, for xml requires the root object languageIssueCount")
 public class LanguageIssueCountDto {
     private long id;
     private String languageName;
