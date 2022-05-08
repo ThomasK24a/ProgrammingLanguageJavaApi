@@ -19,6 +19,8 @@ import java.util.List;
 
 /**
  * Creates endpoints for each CRUD operation (Create, Read, Update, Delete) of the given object
+ * By making the various layers of the api generic there is a great reduction in the amount of copy paste code and new
+ * classes are easier to implement.
  * @param <Service> Service connects the controller with the rest of the application
  * @param <Validator> Validates the json and xml of the object using their respective schemas
  * @param <DTO> Model of object that is generally used in the business layer of the code,

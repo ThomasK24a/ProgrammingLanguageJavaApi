@@ -44,6 +44,4 @@ public class ExceptionCatcher {
     public ErrorMessage handleAnyRuntimeException(RuntimeException exception) {
         return new ErrorMessage("Something unexpected went wrong: " + exception.getMessage());
     }
-
-
 }
